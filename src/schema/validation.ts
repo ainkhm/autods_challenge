@@ -64,3 +64,15 @@ export const schemaStepThree = yup.object().shape({
     otherwise: yup.string()
   })
 })
+
+export const validateStore = async (data: any) => {
+  try {
+    await schemaStepOne.validate(data, { abortEarly: false })
+    await schemaStepTwo.validate(data, { abortEarly: false })
+    await schemaStepThree.validate(data.paymentMethod, { abortEarly: false })
+
+    return true
+  } catch (validationError) {
+    return (validationError as yup.ValidationError).errors
+  }
+}

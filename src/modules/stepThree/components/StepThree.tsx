@@ -2,21 +2,38 @@ import { useNavigate } from "react-router-dom"
 import { Button, Form } from "@/components"
 import { ButtonsLayout, FormLayout } from "@/layouts"
 import { usePayment, useSteps, useUser } from "@/hooks"
-import { schemaStepThree } from "@/schema"
+import { schemaStepThree, schemaStepTwo, schemaStepOne, validateStore } from "@/schema"
 import { StepThreeOptions } from "./StepThreeOptions"
 
 export const StepThree = () => {
   const { prevStep, resetStep } = useSteps()
   const { paymentMethod, savePaymentMethod, resetPaymentMethod } = usePayment()
-  const { resetUser } = useUser()
+  const { resetUser, user } = useUser()
   const navigate = useNavigate()
+
+  const formData = Object.assign({}, user, { paymentMethod: paymentMethod })
+
+  const submitForm = async (data: any) => {
+    try {
+      const isValid = await validateStore(data)
+      if (isValid) {
+        console.log("Object is valid", data)
+      } else {
+        console.error("Validation errors:", isValid)
+      }
+    } catch (error) {
+      console.error("Validation error:", error)
+    }
+  }
+
+  console.log("user", formData)
   return (
     <Form
       validationSchema={schemaStepThree}
       defaultValues={paymentMethod}
       onSubmit={data => {
-        console.log("DATA", data)
         savePaymentMethod(data)
+        submitForm(formData)
         resetUser()
         resetPaymentMethod()
         resetStep()
