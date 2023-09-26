@@ -6,7 +6,6 @@ import { useUser, useSteps } from "@/hooks"
 export const StepOne = () => {
   const { user, saveUser } = useUser()
   const { nextStep } = useSteps()
-
   return (
     <Form
       validationSchema={schemaStepOne}
