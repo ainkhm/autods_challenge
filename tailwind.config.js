@@ -6,6 +6,7 @@ export default {
       colors: {
         "main-color": "#1B1B1B",
         "strawberry-red": "#ff0000",
+        "accent-color": "#27B053",
       },
     }
   },

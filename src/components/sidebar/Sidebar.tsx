@@ -8,8 +8,8 @@ export const Sidebar = () => {
 
   return (
     <div className="w-full h-48 md:h-full relative">
-      <div className="hidden md:block absolute rounded-xl h-full w-full object-cover z-10 bg-[#27B053]" />
-      <div className="block md:hidden absolute h-full w-full object-cover z-10 bg-[#27B053]"></div>
+      <div className="hidden md:block absolute rounded-xl h-full w-full object-cover z-10 bg-accent-color" />
+      <div className="block md:hidden absolute h-full w-full object-cover z-10 bg-accent-color"></div>
       <ul className="relative p-8 pt-12 md:pt-8 flex justify-center md:flex-col z-20 gap-4 md:gap-6">
         {stepsTitles.map((stepTitle, index) => (
           <li key={index} className="flex items-center gap-4">
