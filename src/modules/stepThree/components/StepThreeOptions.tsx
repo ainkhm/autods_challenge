@@ -32,6 +32,10 @@ export const StepThreeOptions = () => {
 
   const methodType = (method: string) => selectedMethod === method
 
+  const validateOnlyInteger = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  };
+
   return (
     <>
       <ul className="flex flex-col gap-4">
@@ -63,6 +67,8 @@ export const StepThreeOptions = () => {
               placeholder="1234 1234 1234 1234"
               options={{ required: true }}
               inputMode="text"
+              onChange={validateOnlyInteger}
+              maxLength={16}
             />
             <div className="grid grid-cols-2 gap-4">
               <Field
@@ -71,6 +77,8 @@ export const StepThreeOptions = () => {
                 placeholder="MM / YY"
                 options={{ required: true }}
                 inputMode="text"
+                onChange={validateOnlyInteger}
+                maxLength={4}
               />
               <Field
                 name="securityCode"
@@ -78,6 +86,8 @@ export const StepThreeOptions = () => {
                 placeholder="CVC"
                 options={{ required: true }}
                 inputMode="text"
+                onChange={validateOnlyInteger}
+                maxLength={3}
               />
             </div>
           </>
